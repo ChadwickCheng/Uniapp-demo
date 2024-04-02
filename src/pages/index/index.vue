@@ -61,9 +61,12 @@ const isTriggered = ref(false)
 const onRefresherrefresh = () => {
   // 开始动画
   isTriggered.value = true
+  // 重置猜你喜欢
+  guessRef.value?.resetData()
   getHomeBannerData()
   getCategoryData()
   getHotData()
+  guessRef.value?.getMore()
   // 结束动画
   // 计时器是宏任务，会在微任务之后执行。或者promise.all
   setTimeout(() => {
