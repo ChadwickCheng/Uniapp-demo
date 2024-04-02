@@ -1,13 +1,28 @@
 <template>
   <CustomNavbar />
-  <XtxSwiper />
+  <XtxSwiper :list="bannerList" />
   <uni-card>
-    <text>这是一个基础卡片示例，内容较少，此示例展示了一个没有任何属性不带阴影的卡片。</text>
+    <text>她来自烦星</text>
   </uni-card>
 </template>
 
 <script setup lang="ts">
+import { onLoad } from '@dcloudio/uni-app'
 import CustomNavbar from './Components/CustomNavbar.vue'
+import { getHomeBannerAPI } from '@/services/home'
+import { ref } from 'vue'
+import type { BannerItem } from '@/types/home'
+
+const bannerList = ref<BannerItem[]>([])
+const getHomeBannerData = async () => {
+  const res = await getHomeBannerAPI()
+  bannerList.value = res.result
+}
+
+// uniapp生命周期
+onLoad(() => {
+  getHomeBannerData()
+})
 </script>
 
 <style lang="scss">
