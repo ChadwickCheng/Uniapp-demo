@@ -8,13 +8,16 @@
     @refresherrefresh="onRefresherrefresh"
     :refresher-triggered="isTriggered"
   >
-    <XtxSwiper :list="bannerList" />
-    <CategoryPanel :list="categoryList" />
-    <HotPanel :list="hotList" />
-    <XtxGuess ref="guessRef" />
-    <uni-card>
-      <text>她来自烦星</text>
-    </uni-card>
+    <PageSkeleton v-if="isLoading" />
+    <template v-else>
+      <XtxSwiper :list="bannerList" />
+      <CategoryPanel :list="categoryList" />
+      <HotPanel :list="hotList" />
+      <XtxGuess ref="guessRef" />
+      <uni-card>
+        <text>她来自烦星</text>
+      </uni-card>
+    </template>
   </scroll-view>
 </template>
 
@@ -27,6 +30,7 @@ import { getHomeBannerAPI, getHomeCategoryAPI, getHomeHotAPI } from '@/services/
 import { ref } from 'vue'
 import type { BannerItem, CategoryItem, HotItem } from '@/types/home'
 import type { XtxGuessInstance } from '@/types/components'
+import PageSkeleton from '@/pages/index/Components/PageSkeleton.vue'
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
@@ -74,11 +78,16 @@ const onRefresherrefresh = () => {
   }, 1000)
 }
 
+const isLoading = ref(false)
 // uniapp生命周期
 onLoad(() => {
+  isLoading.value = true
   getHomeBannerData()
   getCategoryData()
   getHotData()
+  setTimeout(() => {
+    isLoading.value = false
+  }, 1000)
 })
 </script>
 
