@@ -2,6 +2,7 @@
   <CustomNavbar />
   <XtxSwiper :list="bannerList" />
   <CategoryPanel :list="categoryList" />
+  <HotPanel :list="hotList" />
   <uni-card>
     <text>她来自烦星</text>
   </uni-card>
@@ -11,9 +12,10 @@
 import { onLoad } from '@dcloudio/uni-app'
 import CustomNavbar from './Components/CustomNavbar.vue'
 import CategoryPanel from './Components/CategoryPanel.vue'
-import { getHomeBannerAPI, getHomeCategoryAPI } from '@/services/home'
+import HotPanel from './Components/HotPanel.vue'
+import { getHomeBannerAPI, getHomeCategoryAPI, getHomeHotAPI } from '@/services/home'
 import { ref } from 'vue'
-import type { BannerItem, CategoryItem } from '@/types/home'
+import type { BannerItem, CategoryItem, HotItem } from '@/types/home'
 
 const bannerList = ref<BannerItem[]>([])
 const getHomeBannerData = async () => {
@@ -28,10 +30,18 @@ const getCategoryData = async () => {
   categoryList.value = res.result
 }
 
+// 获取热门数据
+const hotList = ref<HotItem[]>([])
+const getHotData = async () => {
+  const res = await getHomeHotAPI()
+  hotList.value = res.result
+}
+
 // uniapp生命周期
 onLoad(() => {
   getHomeBannerData()
   getCategoryData()
+  getHotData()
 })
 </script>
 
