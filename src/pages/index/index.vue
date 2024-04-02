@@ -1,11 +1,14 @@
 <template>
   <CustomNavbar />
-  <XtxSwiper :list="bannerList" />
-  <CategoryPanel :list="categoryList" />
-  <HotPanel :list="hotList" />
-  <uni-card>
-    <text>她来自烦星</text>
-  </uni-card>
+  <scroll-view class="scroll-view" scroll-y>
+    <XtxSwiper :list="bannerList" />
+    <CategoryPanel :list="categoryList" />
+    <HotPanel :list="hotList" />
+    <XtxGuess />
+    <uni-card>
+      <text>她来自烦星</text>
+    </uni-card>
+  </scroll-view>
 </template>
 
 <script setup lang="ts">
@@ -48,5 +51,12 @@ onLoad(() => {
 <style lang="scss">
 page {
   background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.scroll-view {
+  flex: 1;
 }
 </style>
