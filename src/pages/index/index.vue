@@ -1,6 +1,13 @@
 <template>
   <CustomNavbar />
-  <scroll-view class="scroll-view" scroll-y @scrolltolower="onScrolltoLower">
+  <scroll-view
+    class="scroll-view"
+    scroll-y
+    @scrolltolower="onScrolltoLower"
+    refresher-enabled
+    @refresherrefresh="onRefresherrefresh"
+    :refresher-triggered="isTriggered"
+  >
     <XtxSwiper :list="bannerList" />
     <CategoryPanel :list="categoryList" />
     <HotPanel :list="hotList" />
@@ -46,6 +53,22 @@ const getHotData = async () => {
 const guessRef = ref<XtxGuessInstance>()
 const onScrolltoLower = () => {
   guessRef.value?.getMore()
+}
+
+// 下拉刷新状态
+const isTriggered = ref(false)
+// 下拉刷新 可以当作一个生命周期钩子
+const onRefresherrefresh = () => {
+  // 开始动画
+  isTriggered.value = true
+  getHomeBannerData()
+  getCategoryData()
+  getHotData()
+  // 结束动画
+  // 计时器是宏任务，会在微任务之后执行。或者promise.all
+  setTimeout(() => {
+    isTriggered.value = false
+  }, 1000)
 }
 
 // uniapp生命周期
