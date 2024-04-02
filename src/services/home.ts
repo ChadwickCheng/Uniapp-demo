@@ -1,4 +1,5 @@
-import type { BannerItem, CategoryItem, HotItem } from '@/types/home'
+import type { PageResult } from '@/types/global'
+import type { BannerItem, CategoryItem, GuessItem, HotItem } from '@/types/home'
 import { http } from '@/utils/http'
 
 // 封装获取首页轮播图数据
@@ -28,4 +29,12 @@ const getHomeHotAPI = () => {
   })
 }
 
-export { getHomeBannerAPI, getHomeCategoryAPI, getHomeHotAPI }
+// 猜你喜欢
+const getHomeGoodsGuessLikeAPI = () => {
+  return http<PageResult<GuessItem>>({
+    url: '/home/goods/guessLike',
+    method: 'GET',
+  })
+}
+
+export { getHomeBannerAPI, getHomeCategoryAPI, getHomeHotAPI, getHomeGoodsGuessLikeAPI }
