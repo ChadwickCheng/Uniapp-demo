@@ -96,7 +96,7 @@ onLoad(() => {
 
 // 滚动触底
 const onScrolltolower = async () => {
-  // 获取当前选项
+  // 获取当前选项 不然会在选项2触发选项1的数据
   const currsubTypes = subTypes.value[activeIndex.value]
   // 分页条件
   if (currsubTypes.goodsItems.page < currsubTypes.goodsItems.pages) {
