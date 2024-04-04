@@ -52,9 +52,9 @@ onLoad(async () => {
 
 // 获取用户手机号码
 const onGetphonenumber: UniHelper.ButtonOnGetphonenumber = async (ev) => {
-  const { encryptedData, iv } = ev.detail
-  const res = await postLoginWxMinAPI({ code, encryptedData, iv })
-  loginSuccess(res.result)
+  // const { encryptedData, iv } = ev.detail
+  // const res = await postLoginWxMinAPI({ code, encryptedData, iv })
+  // loginSuccess(res.result)
 }
 // #endif
 
