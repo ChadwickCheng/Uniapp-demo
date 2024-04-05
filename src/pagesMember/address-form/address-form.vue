@@ -79,7 +79,7 @@ const rules: UniHelper.UniFormsRules = {
 // 表单组件实例
 const formRef = ref<UniHelper.UniFormsInstance>()
 
-// 提交表单
+// 提交表单 有id是修改，没有是新增
 const onSubmit = async () => {
   try {
     // 表单校验
