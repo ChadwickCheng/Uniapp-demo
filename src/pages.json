@@ -106,48 +106,64 @@
   // 分包加载规则
   "subPackages": [
     {
-      // 子包根目录
+      // 子包的根目录
       "root": "pagesMember",
+      // 页面路径和窗口表现
       "pages": [
         {
           "path": "settings/settings",
           "style": {
             "navigationBarTitleText": "设置"
           }
-        }
-      ]
-    },
-    {
-      "root": "pagesMember/profile",
-      "pages": [
+        },
         {
-          "path": "profile",
+          "path": "profile/profile",
           "style": {
             "navigationStyle": "custom",
             "navigationBarTextStyle": "white",
             "navigationBarTitleText": "个人信息"
           }
-        }
-      ]
-    },
-    {
-      "root": "pagesMember/address",
-      "pages": [
+        },
         {
-          "path": "address",
+          "path": "address/address",
           "style": {
             "navigationBarTitleText": "地址管理"
+          }
+        },
+        {
+          "path": "address-form/address-form",
+          "style": {
+            "navigationBarTitleText": ""
           }
         }
       ]
     },
     {
-      "root": "pagesMember/address-form",
+      "root": "pagesOrder",
       "pages": [
         {
-          "path": "address-form",
+          "path": "create/create",
           "style": {
-            "navigationBarTitleText": ""
+            "navigationBarTitleText": "填写订单"
+          }
+        },
+        {
+          "path": "detail/detail",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "payment/payment",
+          "style": {
+            "navigationBarTitleText": "支付结果"
+          }
+        },
+        {
+          "path": "list/list",
+          "style": {
+            "navigationBarTitleText": "订单列表"
           }
         }
       ]
